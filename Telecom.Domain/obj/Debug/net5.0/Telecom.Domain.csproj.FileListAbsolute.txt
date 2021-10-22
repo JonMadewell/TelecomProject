@@ -1,0 +1,12 @@
+D:\Skillstorm\Projects\Telecom\Telecom.Domain\bin\Debug\net5.0\Telecom.Domain.deps.json
+D:\Skillstorm\Projects\Telecom\Telecom.Domain\bin\Debug\net5.0\Telecom.Domain.dll
+D:\Skillstorm\Projects\Telecom\Telecom.Domain\bin\Debug\net5.0\ref\Telecom.Domain.dll
+D:\Skillstorm\Projects\Telecom\Telecom.Domain\bin\Debug\net5.0\Telecom.Domain.pdb
+D:\Skillstorm\Projects\Telecom\Telecom.Domain\obj\Debug\net5.0\Telecom.Domain.csproj.AssemblyReference.cache
+D:\Skillstorm\Projects\Telecom\Telecom.Domain\obj\Debug\net5.0\Telecom.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\Skillstorm\Projects\Telecom\Telecom.Domain\obj\Debug\net5.0\Telecom.Domain.AssemblyInfoInputs.cache
+D:\Skillstorm\Projects\Telecom\Telecom.Domain\obj\Debug\net5.0\Telecom.Domain.AssemblyInfo.cs
+D:\Skillstorm\Projects\Telecom\Telecom.Domain\obj\Debug\net5.0\Telecom.Domain.csproj.CoreCompileInputs.cache
+D:\Skillstorm\Projects\Telecom\Telecom.Domain\obj\Debug\net5.0\Telecom.Domain.dll
+D:\Skillstorm\Projects\Telecom\Telecom.Domain\obj\Debug\net5.0\ref\Telecom.Domain.dll
+D:\Skillstorm\Projects\Telecom\Telecom.Domain\obj\Debug\net5.0\Telecom.Domain.pdb
