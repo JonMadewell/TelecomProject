@@ -137,3 +137,4 @@ D:\Skillstorm\Projects\Telecom\TelecomProject.API\bin\Debug\net5.0\zh-Hans\Micro
 D:\Skillstorm\Projects\Telecom\TelecomProject.API\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 D:\Skillstorm\Projects\Telecom\TelecomProject.API\bin\Debug\net5.0\runtimes\win-arm\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 D:\Skillstorm\Projects\Telecom\TelecomProject.API\bin\Debug\net5.0\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
+D:\Skillstorm\Projects\Telecom\TelecomProject.API\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

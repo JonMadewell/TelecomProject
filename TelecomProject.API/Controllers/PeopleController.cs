@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using TelecomProject.Data;
 
 namespace TelecomProject.API.Controllers
 {
+    
     [Route("api/[controller]")]
     [ApiController]
     public class PeopleController : ControllerBase
@@ -29,10 +31,14 @@ namespace TelecomProject.API.Controllers
         }
 
         // GET: api/People/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Person>> GetPerson(int id)
+        [Authorize]
+        [HttpGet("GetPerson")]
+        public async Task<ActionResult<Person>> GetPerson()
         {
-            var person = await _context.People.FindAsync(id);
+            string userName = HttpContext.User.Identity.Name;
+
+            var login = await _context.logins.FirstOrDefaultAsync(login => login.Username == userName);
+            var person = await _context.People.FirstOrDefaultAsync(person => person.LoginId == login.LoginId);
 
             if (person == null)
             {
