@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ryant\\source\\repos\\new folde\\TelecomProject.API\\TelecomProject.API.csproj": {}
+    "D:\\Skillstorm\\Projects\\Telecom\\TelecomProject.API\\TelecomProject.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ryant\\source\\repos\\new folde\\Telecom.Domain\\TelecomProject.Domain.csproj": {
+    "D:\\Skillstorm\\Projects\\Telecom\\Telecom.Domain\\TelecomProject.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ryant\\source\\repos\\new folde\\Telecom.Domain\\TelecomProject.Domain.csproj",
+        "projectUniqueName": "D:\\Skillstorm\\Projects\\Telecom\\Telecom.Domain\\TelecomProject.Domain.csproj",
         "projectName": "TelecomProject.Domain",
-        "projectPath": "C:\\Users\\ryant\\source\\repos\\new folde\\Telecom.Domain\\TelecomProject.Domain.csproj",
-        "packagesPath": "C:\\Users\\ryant\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ryant\\source\\repos\\new folde\\Telecom.Domain\\obj\\",
+        "projectPath": "D:\\Skillstorm\\Projects\\Telecom\\Telecom.Domain\\TelecomProject.Domain.csproj",
+        "packagesPath": "C:\\Users\\jonma\\.nuget\\packages\\",
+        "outputPath": "D:\\Skillstorm\\Projects\\Telecom\\Telecom.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ryant\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jonma\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,8 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://packagesource": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
@@ -63,20 +62,20 @@
         }
       }
     },
-    "C:\\Users\\ryant\\source\\repos\\new folde\\TelecomProject.API\\TelecomProject.API.csproj": {
+    "D:\\Skillstorm\\Projects\\Telecom\\TelecomProject.API\\TelecomProject.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ryant\\source\\repos\\new folde\\TelecomProject.API\\TelecomProject.API.csproj",
+        "projectUniqueName": "D:\\Skillstorm\\Projects\\Telecom\\TelecomProject.API\\TelecomProject.API.csproj",
         "projectName": "TelecomProject.API",
-        "projectPath": "C:\\Users\\ryant\\source\\repos\\new folde\\TelecomProject.API\\TelecomProject.API.csproj",
-        "packagesPath": "C:\\Users\\ryant\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ryant\\source\\repos\\new folde\\TelecomProject.API\\obj\\",
+        "projectPath": "D:\\Skillstorm\\Projects\\Telecom\\TelecomProject.API\\TelecomProject.API.csproj",
+        "packagesPath": "C:\\Users\\jonma\\.nuget\\packages\\",
+        "outputPath": "D:\\Skillstorm\\Projects\\Telecom\\TelecomProject.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ryant\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jonma\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -85,15 +84,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://packagesource": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\ryant\\source\\repos\\new folde\\TelecomProject.Data\\TelecomProject.Data\\TelecomProject.Data.csproj": {
-                "projectPath": "C:\\Users\\ryant\\source\\repos\\new folde\\TelecomProject.Data\\TelecomProject.Data\\TelecomProject.Data.csproj"
+              "D:\\Skillstorm\\Projects\\Telecom\\TelecomProject.Data\\TelecomProject.Data\\TelecomProject.Data.csproj": {
+                "projectPath": "D:\\Skillstorm\\Projects\\Telecom\\TelecomProject.Data\\TelecomProject.Data\\TelecomProject.Data.csproj"
               }
             }
           }
@@ -109,6 +107,10 @@
           "targetAlias": "net5.0",
           "dependencies": {
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[5.0.11, )"
+            },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
               "target": "Package",
               "version": "[5.0.11, )"
             },
@@ -153,20 +155,20 @@
         }
       }
     },
-    "C:\\Users\\ryant\\source\\repos\\new folde\\TelecomProject.Data\\TelecomProject.Data\\TelecomProject.Data.csproj": {
+    "D:\\Skillstorm\\Projects\\Telecom\\TelecomProject.Data\\TelecomProject.Data\\TelecomProject.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ryant\\source\\repos\\new folde\\TelecomProject.Data\\TelecomProject.Data\\TelecomProject.Data.csproj",
+        "projectUniqueName": "D:\\Skillstorm\\Projects\\Telecom\\TelecomProject.Data\\TelecomProject.Data\\TelecomProject.Data.csproj",
         "projectName": "TelecomProject.Data",
-        "projectPath": "C:\\Users\\ryant\\source\\repos\\new folde\\TelecomProject.Data\\TelecomProject.Data\\TelecomProject.Data.csproj",
-        "packagesPath": "C:\\Users\\ryant\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ryant\\source\\repos\\new folde\\TelecomProject.Data\\TelecomProject.Data\\obj\\",
+        "projectPath": "D:\\Skillstorm\\Projects\\Telecom\\TelecomProject.Data\\TelecomProject.Data\\TelecomProject.Data.csproj",
+        "packagesPath": "C:\\Users\\jonma\\.nuget\\packages\\",
+        "outputPath": "D:\\Skillstorm\\Projects\\Telecom\\TelecomProject.Data\\TelecomProject.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ryant\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jonma\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -175,15 +177,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://packagesource": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\ryant\\source\\repos\\new folde\\Telecom.Domain\\TelecomProject.Domain.csproj": {
-                "projectPath": "C:\\Users\\ryant\\source\\repos\\new folde\\Telecom.Domain\\TelecomProject.Domain.csproj"
+              "D:\\Skillstorm\\Projects\\Telecom\\Telecom.Domain\\TelecomProject.Domain.csproj": {
+                "projectPath": "D:\\Skillstorm\\Projects\\Telecom\\Telecom.Domain\\TelecomProject.Domain.csproj"
               }
             }
           }

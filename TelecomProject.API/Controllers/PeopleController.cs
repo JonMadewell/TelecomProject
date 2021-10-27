@@ -17,12 +17,10 @@ namespace TelecomProject.API.Controllers
     public class PeopleController : ControllerBase
     {
         private readonly TelecomProjectContext _context;
-        private readonly TelecomProjectContext newContext;
 
         public PeopleController(TelecomProjectContext context)
         {
             _context = context;
-            newContext = context;
         }
 
         // GET: api/People
@@ -52,14 +50,16 @@ namespace TelecomProject.API.Controllers
 
         // PUT: api/People/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutPerson(int id, Person person)
+        [HttpPut("UpdatePerson")]
+        public async Task<IActionResult> PutPerson(string firstName, string lastName, string email)
         {
-            if (id != person.PersonId)
+            Person person = await _context.People.Include(p => p.Login).FirstOrDefaultAsync(p => p.FirstName == firstName && p.LastName == lastName);
+            if (person == null)
             {
                 return BadRequest();
             }
 
+            person.Email = email;
             _context.Entry(person).State = EntityState.Modified;
 
             try
@@ -68,7 +68,7 @@ namespace TelecomProject.API.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PersonExists(id))
+                if (!PersonExists(person.PersonId))
                 {
                     return NotFound();
                 }
@@ -96,38 +96,10 @@ namespace TelecomProject.API.Controllers
             person.Email = email;
             login.Username = userName;
             login.Password = password;
-
-
-                _context.People.Add(person);
-                await _context.SaveChangesAsync();
-            
-
-
-                Person person1 = await _context.People.OrderBy(p => p.PersonId).LastOrDefaultAsync();
-                login.PersonId = person1.PersonId;
-
-                account.PersonId = person1.PersonId;
-                _context.logins.Add(login);
-
-                _context.Accounts.Add(account);
-                await _context.SaveChangesAsync();
-            
-
-            using (newContext)
-            {
-                Person person2 = await _context.People.OrderBy(p => p.PersonId).LastOrDefaultAsync();
-                Login login1 = await _context.logins.FirstOrDefaultAsync(l => l.PersonId == person2.PersonId);
-
-                person2.LoginId = login1.LoginId;
-
-                Account account1 = await _context.Accounts.FirstOrDefaultAsync(a => a.PersonId == person2.PersonId);
-
-                person2.AccountId = account1.AccountId;
-
-                newContext.Update(person2);
-                await newContext.SaveChangesAsync();
-            }
-
+            person.Login = login;
+            person.Account = account;
+            _context.People.Add(person);
+            await _context.SaveChangesAsync();
 
             
 
@@ -138,10 +110,10 @@ namespace TelecomProject.API.Controllers
         }
 
         // DELETE: api/People/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePerson(int id)
+        [HttpDelete("DeleteAccount")]
+        public async Task<IActionResult> DeletePerson([FromQuery]string email)
         {
-            var person = await _context.People.FindAsync(id);
+            var person = await _context.People.FirstOrDefaultAsync(p => p.Email == email);
             if (person == null)
             {
                 return NotFound();

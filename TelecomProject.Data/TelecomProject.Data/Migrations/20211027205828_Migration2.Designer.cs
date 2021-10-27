@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TelecomProject.Data;
 
 namespace TelecomProject.Data.Migrations
 {
     [DbContext(typeof(TelecomProjectContext))]
-    partial class TelecomProjectContextModelSnapshot : ModelSnapshot
+    [Migration("20211027205828_Migration2")]
+    partial class Migration2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,19 +40,19 @@ namespace TelecomProject.Data.Migrations
 
             modelBuilder.Entity("Telecom.Domain.AccountPlans", b =>
                 {
-                    b.Property<int>("AccountsAccountId1")
+                    b.Property<int>("AccountsAccountId")
                         .HasColumnType("int");
 
                     b.Property<int>("PlanId")
                         .HasColumnType("int");
 
+                    b.Property<int>("AccountNumber")
+                        .HasColumnType("int");
+
                     b.Property<int>("AccountPlanId")
                         .HasColumnType("int");
 
-                    b.Property<int>("AccountsAccountId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AccountsAccountId1", "PlanId");
+                    b.HasKey("AccountsAccountId", "PlanId");
 
                     b.HasIndex("PlanId");
 
@@ -189,7 +191,7 @@ namespace TelecomProject.Data.Migrations
                 {
                     b.HasOne("Telecom.Domain.Account", null)
                         .WithMany()
-                        .HasForeignKey("AccountsAccountId1")
+                        .HasForeignKey("AccountsAccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
