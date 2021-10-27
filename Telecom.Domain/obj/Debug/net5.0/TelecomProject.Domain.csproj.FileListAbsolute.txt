@@ -9,3 +9,4 @@ D:\Skillstorm\Projects\Telecom\Telecom.Domain\obj\Debug\net5.0\TelecomProject.Do
 D:\Skillstorm\Projects\Telecom\Telecom.Domain\obj\Debug\net5.0\TelecomProject.Domain.dll
 D:\Skillstorm\Projects\Telecom\Telecom.Domain\obj\Debug\net5.0\ref\TelecomProject.Domain.dll
 D:\Skillstorm\Projects\Telecom\Telecom.Domain\obj\Debug\net5.0\TelecomProject.Domain.pdb
+D:\Skillstorm\Projects\Telecom\Telecom.Domain\obj\Debug\net5.0\TelecomProject.Domain.csproj.AssemblyReference.cache

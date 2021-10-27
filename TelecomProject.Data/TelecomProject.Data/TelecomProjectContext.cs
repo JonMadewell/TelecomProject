@@ -25,6 +25,11 @@ namespace TelecomProject.Data
 
         }
 
+        public TelecomProjectContext()
+        {
+
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //One Login per One Person

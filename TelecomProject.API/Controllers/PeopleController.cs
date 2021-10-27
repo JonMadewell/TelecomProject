@@ -17,10 +17,12 @@ namespace TelecomProject.API.Controllers
     public class PeopleController : ControllerBase
     {
         private readonly TelecomProjectContext _context;
+        private readonly TelecomProjectContext newContext;
 
         public PeopleController(TelecomProjectContext context)
         {
             _context = context;
+            newContext = context;
         }
 
         // GET: api/People
@@ -82,10 +84,55 @@ namespace TelecomProject.API.Controllers
         // POST: api/People
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Person>> PostPerson(Person person)
+        
+        public async Task<ActionResult<Person>> PostPerson([FromQuery]string firstName, string lastName, string email, string userName, string password)
         {
-            _context.People.Add(person);
-            await _context.SaveChangesAsync();
+            var person = new Person();
+            var login = new Login();
+            var account = new Account();
+
+            person.FirstName = firstName;
+            person.LastName = lastName;
+            person.Email = email;
+            login.Username = userName;
+            login.Password = password;
+
+
+                _context.People.Add(person);
+                await _context.SaveChangesAsync();
+            
+
+
+                Person person1 = await _context.People.OrderBy(p => p.PersonId).LastOrDefaultAsync();
+                login.PersonId = person1.PersonId;
+
+                account.PersonId = person1.PersonId;
+                _context.logins.Add(login);
+
+                _context.Accounts.Add(account);
+                await _context.SaveChangesAsync();
+            
+
+            using (newContext)
+            {
+                Person person2 = await _context.People.OrderBy(p => p.PersonId).LastOrDefaultAsync();
+                Login login1 = await _context.logins.FirstOrDefaultAsync(l => l.PersonId == person2.PersonId);
+
+                person2.LoginId = login1.LoginId;
+
+                Account account1 = await _context.Accounts.FirstOrDefaultAsync(a => a.PersonId == person2.PersonId);
+
+                person2.AccountId = account1.AccountId;
+
+                newContext.Update(person2);
+                await newContext.SaveChangesAsync();
+            }
+
+
+            
+
+
+            
 
             return CreatedAtAction("GetPerson", new { id = person.PersonId }, person);
         }

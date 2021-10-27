@@ -38,6 +38,7 @@ namespace TelecomProject.API
                   .EnableSensitiveDataLogging()
                   .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
 
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -46,6 +47,16 @@ namespace TelecomProject.API
 
             services.AddAuthentication("BasicAuthentication")
                 .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
+
+            services.AddCors(opt =>
+            {
+                opt.AddDefaultPolicy(builder =>
+                {
+                    builder.WithOrigins("*")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+                });
+            });
 
         }
 
