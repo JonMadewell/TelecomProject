@@ -16,9 +16,9 @@ export class AuthenticationService {
     const headers = new HttpHeaders ({Authorization: 'Basic ' + btoa(username + ':' + password)})
     return this.httpClient.post<User>('https://localhost:44394/api/People/Login', {headers}).pipe(
       map(
-        userDate =>{
+        userData =>{
           sessionStorage.setItem('username', username)
-          return userDate;
+          return userData;
         }
       )
     );
@@ -34,7 +34,7 @@ export class AuthenticationService {
     sessionStorage.removeItem('username')
   }
 
-  
+
 }
 
 

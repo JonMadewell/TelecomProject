@@ -10,7 +10,13 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PortalComponent } from './portal/portal.component';
 import { PlansComponent } from './plans/plans.component';
-// import { RegisterComponent } from './register/register.component';
+import { DevicesComponent } from './devices/devices.component';
+
+import {MatCardModule} from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -19,8 +25,8 @@ import { PlansComponent } from './plans/plans.component';
     SignInComponent,
     NavBarComponent,
     PortalComponent,
-    PlansComponent
-    // RegisterComponent,
+    PlansComponent,
+    DevicesComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,6 +34,11 @@ import { PlansComponent } from './plans/plans.component';
     NgbModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatCardModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatButtonModule,
+    FlexLayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
