@@ -86,6 +86,8 @@ namespace TelecomProject.API
             {
                 endpoints.MapControllers();
             });
+
+            app.UseCors();
         }
     }
 }

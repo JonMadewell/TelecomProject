@@ -1,0 +1,16 @@
+<div class="col-md-6">
+    <table class ="table table-striped">
+        <thead>
+            <tr>
+                <th>planId</th>
+                <th>planName</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let plans of plans">
+                <td>{{plans.planId}}</td>
+                <td>{{plans.planName}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
