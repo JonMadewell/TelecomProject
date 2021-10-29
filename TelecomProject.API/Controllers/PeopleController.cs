@@ -127,7 +127,7 @@ namespace TelecomProject.API.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost("Login")]
+        [HttpGet("Login")]
         public async Task<IActionResult> Authenticate([FromQuery] string username, string password)
         {
             string userName = HttpContext.User.Identity.Name;

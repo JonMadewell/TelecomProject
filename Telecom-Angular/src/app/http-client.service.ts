@@ -15,7 +15,7 @@ export class HttpClientService {
   getUser( UserName: string, Password: string){
     
       const headers = new HttpHeaders({Authorization: 'basic' + btoa(UserName + ':' + Password)});
-      return this.httpClient.get<User>("https://localhost:44394/api/People/getPeople", {headers})
+      return this.httpClient.post<User>("https://localhost:44394/api/People/Login", {headers})
   }
 
   getPlans(){

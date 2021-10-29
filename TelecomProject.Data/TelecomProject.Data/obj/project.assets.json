@@ -5813,23 +5813,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jonma\\.nuget\\packages\\": {},
+    "C:\\Users\\ryant\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Skillstorm\\Projects\\Telecom\\TelecomProject.Data\\TelecomProject.Data\\TelecomProject.Data.csproj",
+      "projectUniqueName": "C:\\Users\\ryant\\source\\repos\\new folde\\TelecomProject.Data\\TelecomProject.Data\\TelecomProject.Data.csproj",
       "projectName": "TelecomProject.Data",
-      "projectPath": "D:\\Skillstorm\\Projects\\Telecom\\TelecomProject.Data\\TelecomProject.Data\\TelecomProject.Data.csproj",
-      "packagesPath": "C:\\Users\\jonma\\.nuget\\packages\\",
-      "outputPath": "D:\\Skillstorm\\Projects\\Telecom\\TelecomProject.Data\\TelecomProject.Data\\obj\\",
+      "projectPath": "C:\\Users\\ryant\\source\\repos\\new folde\\TelecomProject.Data\\TelecomProject.Data\\TelecomProject.Data.csproj",
+      "packagesPath": "C:\\Users\\ryant\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ryant\\source\\repos\\new folde\\TelecomProject.Data\\TelecomProject.Data\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\jonma\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ryant\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -5838,14 +5838,15 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://packagesource": {}
       },
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "D:\\Skillstorm\\Projects\\Telecom\\Telecom.Domain\\TelecomProject.Domain.csproj": {
-              "projectPath": "D:\\Skillstorm\\Projects\\Telecom\\Telecom.Domain\\TelecomProject.Domain.csproj"
+            "C:\\Users\\ryant\\source\\repos\\new folde\\Telecom.Domain\\TelecomProject.Domain.csproj": {
+              "projectPath": "C:\\Users\\ryant\\source\\repos\\new folde\\Telecom.Domain\\TelecomProject.Domain.csproj"
             }
           }
         }
