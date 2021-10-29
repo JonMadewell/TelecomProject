@@ -32,7 +32,7 @@ namespace TelecomProject.API.Controllers
 
         // GET: api/People/5
         [Authorize]
-        [HttpGet("GetPerson")]
+        [HttpGet("Login")]
         public async Task<ActionResult<Person>> GetPerson()
         {
             string userName = HttpContext.User.Identity.Name;

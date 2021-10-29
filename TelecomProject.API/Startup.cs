@@ -71,6 +71,7 @@ namespace TelecomProject.API
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TelecomProject.API v1"));
+                app.UseCors();
             }
 
             app.UseHttpsRedirection();
