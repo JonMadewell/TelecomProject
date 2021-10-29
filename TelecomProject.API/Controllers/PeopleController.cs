@@ -31,10 +31,14 @@ namespace TelecomProject.API.Controllers
         }
 
         // GET: api/People/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Person>> GetPerson(int id)
+        
+        [HttpGet("ViewInfo")]
+        public async Task<ActionResult<Person>> GetPerson()
         {
-            var person = await _context.People.FirstOrDefaultAsync(p => p.PersonId == id);
+            string userName = HttpContext.User.Identity.Name;
+
+            var login = await _context.logins.FirstOrDefaultAsync(login => login.Username == userName);
+            var person = await _context.People.FirstOrDefaultAsync(person => person.LoginId == login.LoginId);
 
             if (person == null)
             {
@@ -79,6 +83,7 @@ namespace TelecomProject.API.Controllers
 
         // POST: api/People
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [AllowAnonymous]
         [HttpPost]
 
         public async Task<ActionResult<Person>> PostPerson([FromQuery] string firstName, string lastName, string email, string userName, string password)
@@ -128,13 +133,16 @@ namespace TelecomProject.API.Controllers
 
         [AllowAnonymous]
         [HttpPost("Login")]
-        public async Task<IActionResult> Authenticate([FromQuery] string username, string password)
+        public async Task<IActionResult> Authenticate()
         {
             string userName = HttpContext.User.Identity.Name;
 
-            var login = await _context.logins.FirstOrDefaultAsync(login => login.Username == userName);
-            var person = await _context.People.FirstOrDefaultAsync(person => person.LoginId == login.LoginId);
-
+            var person = await _context.People.Include(p => p.Login).FirstOrDefaultAsync(person => person.Login.Username == userName);
+            
+            //if(person == null)
+            //{
+            //    return BadRequest(new { message = "Username or Password is incorrect" });
+            //}
             return Ok(person);
         }
     }

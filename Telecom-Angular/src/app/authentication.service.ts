@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from 'src/app/user.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class AuthenticationService {
 
   authentiate(username:string, password:string){
     const headers = new HttpHeaders ({Authorization: 'Basic ' + btoa(username + ':' + password)})
-    return this.httpClient.get<User>('https://localhost:44394/api/People/getPerson', {headers}).pipe(
+    return this.httpClient.post<User>('https://localhost:44394/api/People/Login', {headers}).pipe(
       map(
         userDate =>{
           sessionStorage.setItem('username', username)

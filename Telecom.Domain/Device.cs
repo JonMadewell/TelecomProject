@@ -10,6 +10,10 @@ namespace Telecom.Domain
     {
         public int DeviceId { get; set; }
 
+        public string DeviceName { get; set; }
+
+        public string features { get; set; }
+
         public string PhoneNumber { get; set; }
 
         public List<Person> People { get; set; }

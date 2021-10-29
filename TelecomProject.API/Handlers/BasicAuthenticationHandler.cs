@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
@@ -42,8 +43,8 @@ namespace TelecomProject.API.Handlers
                 string userName = credentials[0];
                 string password = credentials[1];
 
-                Login login = _context.logins.FirstOrDefault(login => login.Username == userName && login.Password == password);
-                Person person = _context.People.FirstOrDefault(person => person.LoginId == login.LoginId);
+                Login login = await _context.logins.FirstOrDefaultAsync(login => login.Username == userName && login.Password == password);
+                Person person = await _context.People.FirstOrDefaultAsync(person => person.LoginId == login.LoginId);
 
                 if(login == null)
                 {
