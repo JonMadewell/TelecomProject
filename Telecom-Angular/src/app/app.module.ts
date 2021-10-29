@@ -9,6 +9,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PortalComponent } from './portal/portal.component';
+import { PlansComponent } from './plans/plans.component';
 // import { RegisterComponent } from './register/register.component';
 
 
@@ -17,7 +18,8 @@ import { PortalComponent } from './portal/portal.component';
     AppComponent,
     SignInComponent,
     NavBarComponent,
-    PortalComponent
+    PortalComponent,
+    PlansComponent
     // RegisterComponent,
   ],
   imports: [

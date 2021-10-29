@@ -23,7 +23,7 @@ export class AuthenticationService {
     );
   }
 
-  isUserLOggedIn(){
+  isUserLoggedIn(){
     let user = sessionStorage.getItem('username')
     console.log(!(user== null))
     return !(user === null)
@@ -32,6 +32,8 @@ export class AuthenticationService {
   logOut(){
     sessionStorage.removeItem('username')
   }
+
+  
 }
 
 
