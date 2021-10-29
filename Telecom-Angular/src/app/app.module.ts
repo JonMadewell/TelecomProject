@@ -10,6 +10,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PortalComponent } from './portal/portal.component';
 import { PlansComponent } from './plans/plans.component';
+import { DevicesComponent } from './devices/devices.component';
 // import { RegisterComponent } from './register/register.component';
 
 
@@ -19,7 +20,8 @@ import { PlansComponent } from './plans/plans.component';
     SignInComponent,
     NavBarComponent,
     PortalComponent,
-    PlansComponent
+    PlansComponent,
+    DevicesComponent
     // RegisterComponent,
   ],
   imports: [
