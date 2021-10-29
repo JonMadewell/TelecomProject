@@ -11,7 +11,7 @@ using TelecomProject.Data;
 
 namespace TelecomProject.API.Controllers
 {
-    
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PeopleController : ControllerBase
@@ -31,14 +31,10 @@ namespace TelecomProject.API.Controllers
         }
 
         // GET: api/People/5
-        [Authorize]
-        [HttpGet("Login")]
-        public async Task<ActionResult<Person>> GetPerson()
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Person>> GetPerson(int id)
         {
-            string userName = HttpContext.User.Identity.Name;
-
-            var login = await _context.logins.FirstOrDefaultAsync(login => login.Username == userName);
-            var person = await _context.People.FirstOrDefaultAsync(person => person.LoginId == login.LoginId);
+            var person = await _context.People.FirstOrDefaultAsync(p => p.PersonId == id);
 
             if (person == null)
             {
@@ -84,8 +80,8 @@ namespace TelecomProject.API.Controllers
         // POST: api/People
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        
-        public async Task<ActionResult<Person>> PostPerson([FromQuery]string firstName, string lastName, string email, string userName, string password)
+
+        public async Task<ActionResult<Person>> PostPerson([FromQuery] string firstName, string lastName, string email, string userName, string password)
         {
             var person = new Person();
             var login = new Login();
@@ -101,17 +97,17 @@ namespace TelecomProject.API.Controllers
             _context.People.Add(person);
             await _context.SaveChangesAsync();
 
-            
 
 
-            
+
+
 
             return CreatedAtAction("GetPerson", new { id = person.PersonId }, person);
         }
 
         // DELETE: api/People/5
         [HttpDelete("DeleteAccount")]
-        public async Task<IActionResult> DeletePerson([FromQuery]string email)
+        public async Task<IActionResult> DeletePerson([FromQuery] string email)
         {
             var person = await _context.People.FirstOrDefaultAsync(p => p.Email == email);
             if (person == null)
@@ -128,6 +124,18 @@ namespace TelecomProject.API.Controllers
         private bool PersonExists(int id)
         {
             return _context.People.Any(e => e.PersonId == id);
+        }
+
+        [AllowAnonymous]
+        [HttpPost("Login")]
+        public async Task<IActionResult> Authenticate([FromQuery] string username, string password)
+        {
+            string userName = HttpContext.User.Identity.Name;
+
+            var login = await _context.logins.FirstOrDefaultAsync(login => login.Username == userName);
+            var person = await _context.People.FirstOrDefaultAsync(person => person.LoginId == login.LoginId);
+
+            return Ok(person);
         }
     }
 }
