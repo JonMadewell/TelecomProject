@@ -14,6 +14,6 @@ namespace Telecom.Domain
 
         public int DeviceId { get; set; }
 
-        
+        public string PhoneNumber { get; set; }
     }
 }

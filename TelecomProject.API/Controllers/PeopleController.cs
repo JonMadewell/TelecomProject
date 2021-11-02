@@ -155,19 +155,28 @@ namespace TelecomProject.API.Controllers
         {
             string userName = HttpContext.User.Identity.Name;
 
-            var person = await _context.People.Include(p => p.Devices).Include(p => p.Login).Include(p => p.Account).FirstOrDefaultAsync(p => p.Login.Username == userName);
-            var plan =  person.Account.plans.FirstOrDefault(p => p.PlanId == planId);
-            var device = person.Devices.FirstOrDefault(d => d.DeviceId == DeviceId);
+            var person = await _context.People.Include(p => p.Devices).Include(p => p.Login).Include(p => p.Account.plans).FirstOrDefaultAsync(p => p.Login.Username == userName);
+            var plans =  person.Account.plans.ToList();
+            var plan = plans.FirstOrDefault(p => p.PlanId == planId);
+            var device = await _context.Devices.Include(d => d.People).FirstOrDefaultAsync(d => d.DeviceId == DeviceId);
 
             if(person.Devices.Count < plan.DeviceLimit)
             {
                 person.Devices.Add(device);
-
-                _context.Entry(person).State = EntityState.Modified;
+                device.People.Add(person);                
                 await _context.SaveChangesAsync();
+
+                //var p_d = await _context.Set<PersonDevice>().SingleOrDefaultAsync(pd => pd.PersonId == person.PersonId && pd.DeviceId == device.DeviceId);
+                //if (p_d != null)
+                //{
+                //    p_d.PhoneNumber = new Random().Next(1000000000, 2147483647).ToString();
+                //}
+                //_context.Entry(p_d).State = EntityState.Modified;
+                //await _context.SaveChangesAsync();
 
                 return NoContent();
             }
+
             return BadRequest(new { message = "Exceeded Device Limit"});
         }
         [HttpPut("AddPlan")]
@@ -220,6 +229,24 @@ namespace TelecomProject.API.Controllers
 
             return NoContent();
         }
+        [HttpGet("GetDevicesForPerson")]
+        public async Task<IEnumerable<Device>> ViewDevices()
+        {
+            string userName = HttpContext.User.Identity.Name;
+            var person = await _context.People.Include(p => p.Login).Include(p => p.Devices).Include(p => p.Account.plans).FirstOrDefaultAsync(p => p.Login.Username == userName);
+            var devices = person.Devices.ToList();
+            //var devices = await _context.Devices.Include(d => d.People).ToListAsync();
 
+            return devices;
+        }
+        [HttpGet("GetPlansForPerson")]
+        public async Task<IEnumerable<Plan>> ViewPlans()
+        {
+            string userName = HttpContext.User.Identity.Name;
+            var person = await _context.People.Include(p => p.Login).Include(p => p.Account.plans).FirstOrDefaultAsync(p => p.Login.Username == userName);
+            var plans = person.Account.plans.ToList();
+
+            return plans;
+        }
     }
 }
