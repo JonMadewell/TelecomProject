@@ -13,5 +13,7 @@ namespace Telecom.Domain
         public int PersonId { get; set; }
 
         public int DeviceId { get; set; }
+
+        
     }
 }

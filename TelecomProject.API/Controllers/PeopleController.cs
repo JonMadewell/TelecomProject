@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Telecom.Domain;
+using TelecomProject.API.Handlers;
+using TelecomProject.API.Services;
 using TelecomProject.Data;
 
 namespace TelecomProject.API.Controllers
@@ -17,10 +19,12 @@ namespace TelecomProject.API.Controllers
     public class PeopleController : ControllerBase
     {
         private readonly TelecomProjectContext _context;
-
-        public PeopleController(TelecomProjectContext context)
+        private readonly ILoginService _loginService;
+        public PeopleController(TelecomProjectContext context, ILoginService loginService)
         {
             _context = context;
+            _loginService = loginService;
+            
         }
 
         // GET: api/People
@@ -37,8 +41,8 @@ namespace TelecomProject.API.Controllers
         {
             string userName = HttpContext.User.Identity.Name;
 
-            var login = await _context.logins.FirstOrDefaultAsync(login => login.Username == userName);
-            var person = await _context.People.FirstOrDefaultAsync(person => person.LoginId == login.LoginId);
+            
+            var person = await _context.People.Include(p => p.Login).Include(p => p.Account.plans).Include(p => p.Devices).FirstOrDefaultAsync(person => person.Login.Username == userName);
 
             if (person == null)
             {
@@ -133,17 +137,89 @@ namespace TelecomProject.API.Controllers
 
         [AllowAnonymous]
         [HttpPost("Login")]
-        public async Task<IActionResult> Authenticate()
+        public async Task<IActionResult> Authenticate([FromBody] Login login)
+        {
+            var person = await _loginService.Authenticate(login.Username, login.Password);
+
+            if(person == null)
+            {
+                return BadRequest(new { message = "Username or password is incorrect" });
+            }
+
+           
+
+            return Ok(person);
+        }
+        [HttpPut("AddDevice")]
+        public async Task<IActionResult> AddDevice([FromQuery]int DeviceId, int planId)
         {
             string userName = HttpContext.User.Identity.Name;
 
-            var person = await _context.People.Include(p => p.Login).FirstOrDefaultAsync(person => person.Login.Username == userName);
-            
-            //if(person == null)
-            //{
-            //    return BadRequest(new { message = "Username or Password is incorrect" });
-            //}
-            return Ok(person);
+            var person = await _context.People.Include(p => p.Devices).Include(p => p.Login).Include(p => p.Account).FirstOrDefaultAsync(p => p.Login.Username == userName);
+            var plan =  person.Account.plans.FirstOrDefault(p => p.PlanId == planId);
+            var device = person.Devices.FirstOrDefault(d => d.DeviceId == DeviceId);
+
+            if(person.Devices.Count < plan.DeviceLimit)
+            {
+                person.Devices.Add(device);
+
+                _context.Entry(person).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+
+                return NoContent();
+            }
+            return BadRequest(new { message = "Exceeded Device Limit"});
         }
+        [HttpPut("AddPlan")]
+        public async Task<IActionResult> AddPlan([FromQuery]int planId)
+        {
+            string userName = HttpContext.User.Identity.Name;
+            var person = await _context.People.Include(p => p.Devices).Include(p => p.Login).Include(p => p.Account).FirstOrDefaultAsync(p => p.Login.Username == userName);
+            var plan = person.Account.plans.FirstOrDefault(p => p.PlanId == planId);
+
+
+            person.Account.plans.Add(plan);
+
+            _context.Entry(person).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        [HttpPut("DeleteDevice")]
+        public async Task<IActionResult> DeleteDevice([FromQuery]int deviceId)
+        {
+            string userName = HttpContext.User.Identity.Name;
+            var person = await _context.People.Include(p => p.Login).Include(p => p.Devices).Include(p => p.Account.plans).FirstOrDefaultAsync(p => p.Login.Username == userName);
+            var device = person.Devices.FirstOrDefault(d => d.DeviceId == deviceId);
+            if (person == null)
+            {
+                return NotFound();
+            }
+
+            person.Devices.Remove(device);
+            _context.Entry(person).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+        [HttpPut("DeletePlan")]
+        public async Task<IActionResult> DeletePlan([FromQuery] int planId)
+        {
+            string userName = HttpContext.User.Identity.Name;
+            var person = await _context.People.Include(p => p.Login).Include(p => p.Devices).Include(p => p.Account.plans).FirstOrDefaultAsync(p => p.Login.Username == userName);
+            var plan = person.Account.plans.FirstOrDefault(p => p.PlanId == planId);
+            if (person == null)
+            {
+                return NotFound();
+            }
+
+            person.Account.plans.Remove(plan);
+            _context.Entry(person).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
     }
 }

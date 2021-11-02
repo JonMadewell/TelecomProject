@@ -12,10 +12,12 @@ namespace Telecom.Domain
 
         public string DeviceName { get; set; }
 
-        public string features { get; set; }
+        public string Camera { get; set; }
+
+        public string Storage { get; set; }
+        public string DeviceDis { get; set; }
 
         public string PhoneNumber { get; set; }
-
         public List<Person> People { get; set; }
     }
 }

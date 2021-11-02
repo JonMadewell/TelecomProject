@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TelecomProject.Data;
 
 namespace TelecomProject.Data.Migrations
 {
     [DbContext(typeof(TelecomProjectContext))]
-    partial class TelecomProjectContextModelSnapshot : ModelSnapshot
+    [Migration("20211102173453_Migration5")]
+    partial class Migration5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,17 +75,10 @@ namespace TelecomProject.Data.Migrations
                     b.Property<string>("DeviceName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("Storage")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("DeviceId");
-
-                    b.HasIndex("PhoneNumber")
-                        .IsUnique()
-                        .HasFilter("[PhoneNumber] IS NOT NULL");
 
                     b.ToTable("Devices");
                 });
@@ -160,11 +155,18 @@ namespace TelecomProject.Data.Migrations
                     b.Property<int>("PersonId")
                         .HasColumnType("int");
 
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("PersonDeviceId");
 
                     b.HasIndex("DeviceId");
 
                     b.HasIndex("PersonId");
+
+                    b.HasIndex("PhoneNumber")
+                        .IsUnique()
+                        .HasFilter("[PhoneNumber] IS NOT NULL");
 
                     b.ToTable("PersonDevice");
                 });

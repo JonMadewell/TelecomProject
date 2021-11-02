@@ -11,6 +11,7 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Telecom.Domain;
+using TelecomProject.API.Services;
 using TelecomProject.Data;
 
 namespace TelecomProject.API.Handlers
@@ -18,15 +19,18 @@ namespace TelecomProject.API.Handlers
     public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>
     {
         private readonly TelecomProjectContext _context;
+        private readonly ILoginService _loginService;
         public BasicAuthenticationHandler(
                 IOptionsMonitor<AuthenticationSchemeOptions> options,
                 ILoggerFactory logger,
                 UrlEncoder encoder,
                 ISystemClock clock,
-                TelecomProjectContext context) 
+                TelecomProjectContext context,
+                ILoginService loginService) 
                 : base(options, logger, encoder, clock)
         {
             _context = context;
+            _loginService = loginService;
         }
         protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
         {
@@ -43,16 +47,17 @@ namespace TelecomProject.API.Handlers
                 string userName = credentials[0];
                 string password = credentials[1];
 
-                Login login = await _context.logins.FirstOrDefaultAsync(login => login.Username == userName && login.Password == password);
-                Person person = await _context.People.FirstOrDefaultAsync(person => person.LoginId == login.LoginId);
+                Person Person = await _loginService.Authenticate(userName, password);
+                //Login login = await _context.logins.FirstOrDefaultAsync(login => login.Username == userName && login.Password == password);
+                //Person person = await _context.People.FirstOrDefaultAsync(person => person.LoginId == login.LoginId);
 
-                if(login == null)
+                if(Person == null)
                 {
                     AuthenticateResult.Fail("Invalid Username");
                 }
                 else
                 {
-                    var claims = new[] { new Claim(ClaimTypes.Name, login.Username) };
+                    var claims = new[] { new Claim(ClaimTypes.Name,Person.Login.Username) };
                     var identity = new ClaimsIdentity(claims, Scheme.Name);
                     var principal = new ClaimsPrincipal(identity);
                     var ticket = new AuthenticationTicket(principal, Scheme.Name);
@@ -67,6 +72,12 @@ namespace TelecomProject.API.Handlers
 
             return AuthenticateResult.Fail("");
 
+        }
+
+        protected override Task HandleChallengeAsync(AuthenticationProperties properties)
+        {
+            Response.Headers["WWW-Authenticate"] = "Basic realm=\"\", charset=\"UTF-8\"";
+            return base.HandleChallengeAsync(properties);
         }
     }
 }

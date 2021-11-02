@@ -17,12 +17,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TelecomProject.API.Handlers;
+using TelecomProject.API.Services;
 using TelecomProject.Data;
 
 namespace TelecomProject.API
 {
     public class Startup
     {
+        //private readonly TelecomProjectContext _context;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -50,13 +52,38 @@ namespace TelecomProject.API
             services.AddAuthentication("BasicAuthentication")
                 .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
 
+
+            // var key = "ThisIsTheKey";
+
+            // services.AddAuthentication(x =>
+            //{
+            //    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            //    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            //}).AddJwtBearer(x =>
+            //{
+            //    x.RequireHttpsMetadata = false;
+            //    x.SaveToken = true;
+            //    x.TokenValidationParameters = new TokenValidationParameters
+            //    {
+            //        ValidateIssuerSigningKey = true,
+            //        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key)),
+            //        ValidateIssuer = false,
+            //        ValidateAudience = false
+            //    };
+            //});
+
+            services.AddScoped<ILoginService, LoginService>();
+            
+            //services.AddSingleton<IJwtAuthHandler>(new JwtAuthHandler(key, _context));
+
             services.AddCors(opt =>
             {
                 opt.AddDefaultPolicy(builder =>
                 {
-                    builder.WithOrigins("*")
+                    builder.WithOrigins("http://localhost:4200")
                     .AllowAnyHeader()
-                    .AllowAnyMethod();
+                    .AllowAnyMethod()
+                    .WithExposedHeaders("*", "Authorization");
                 });
             });
 
