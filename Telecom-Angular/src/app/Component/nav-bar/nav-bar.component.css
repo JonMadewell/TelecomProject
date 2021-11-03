@@ -1,0 +1,14 @@
+.navbar{
+    background-color: rgb(219, 161, 52);
+}
+
+.navbar-brand{
+    color: aliceblue;
+    font-weight: bolder;
+}
+
+.btn{
+    background-color: aliceblue;
+    font-weight: bolder;
+    color: orange;
+}

@@ -1,0 +1,24 @@
+#cover {
+    background: #222 url('/assets/signUp.jpg') center center no-repeat;
+    background-size: cover;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.special-card{
+    background-color: transparent;
+}
+.mat-card-title{
+    background-color: orange;
+    color: white;
+}
+
+.btn{
+    background-color: orange;
+    color: white; 
+}
+  
+  
