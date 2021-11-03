@@ -11,3 +11,17 @@
 .special-card{
     background-color: transparent;
 }
+
+.card-header{
+    background-color: rgb(219, 161, 52);
+}
+.btn{
+    background-color: orange;
+    font-weight: bolder;
+    color: white;
+    border: 5px;
+    border-color: black;
+}
+.text{
+    color:rgb(219, 161, 52)
+}

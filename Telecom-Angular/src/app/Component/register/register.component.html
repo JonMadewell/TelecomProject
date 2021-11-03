@@ -1,3 +1,4 @@
+<app-nav-bar></app-nav-bar>
 <div id="cover" class="h-100">
 <div class="col-md-6 offset-md-3">
     
@@ -33,7 +34,9 @@
                         <mat-error *ngIf="Password.touched && Password.hasError('required')">Password is required</mat-error>
                    </mat-form-field>
 
-                    <button mat-button type="submit" [disabled]="!registerForm.valid" >Join</button>
+                    <div class="d-flex justify-content-center" >
+                        <button mat-button class="btn" type="submit" [disabled]="!registerForm.valid" >Join</button>
+                    </div>
                 </form> 
             </mat-card-content>
         </mat-card>

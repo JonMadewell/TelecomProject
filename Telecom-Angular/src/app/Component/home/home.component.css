@@ -10,4 +10,9 @@ hr{
 
 h2{
     margin-bottom:0px ;
+    font-weight: bolder;
+    color:wheat;
+    font-size: 40px;
+    -webkit-text-stroke: 1px;
+    -webkit-text-stroke-color:orange ;
 }

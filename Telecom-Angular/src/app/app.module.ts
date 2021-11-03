@@ -5,12 +5,6 @@ import {HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SignInComponent } from './sign-in/sign-in.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { PortalComponent } from './portal/portal.component';
-import { PlansComponent } from './plans/plans.component';
-import { DevicesComponent } from './devices/devices.component';
 
 import {MatCardModule} from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -18,6 +12,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthenticationInterceptorService } from 'src/Interceptors/authentication-interceptor.service';
+import { SignInComponent } from './Component/sign-in/sign-in.component';
+import { NavBarComponent } from './Component/nav-bar/nav-bar.component';
+import { PortalComponent } from './Component/portal/portal.component';
+import { PlansComponent } from './Component/plans/plans.component';
+import { DevicesComponent } from './Component/devices/devices.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatFormFieldModule} from '@angular/material/form-field';
+import { HomeComponent } from './Component/home/home.component';
+import { RegisterComponent } from './Component/register/register.component';
+import { NavPortalComponent } from './Component/nav-portal/nav-portal.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +31,9 @@ import { AuthenticationInterceptorService } from 'src/Interceptors/authenticatio
     PortalComponent,
     PlansComponent,
     DevicesComponent,
+    HomeComponent,
+    RegisterComponent,
+    NavPortalComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +45,8 @@ import { AuthenticationInterceptorService } from 'src/Interceptors/authenticatio
     BrowserAnimationsModule,
     MatToolbarModule,
     MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
     FlexLayoutModule,
   ],
   providers: [{

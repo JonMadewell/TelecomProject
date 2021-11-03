@@ -1,7 +1,8 @@
+<app-nav-bar></app-nav-bar>
 <div id="cover" class="h-100">
     <div class="col-md-6 offset-md-3 mt-5 mb-5">
-    <div class="card">
-        <h4 class="card-header bg-dark text-light">User Login</h4>
+    <div class="card border border-dark">
+        <h4 class="card-header text-light">User Login</h4>
             <div class="card-body bg-gradient-light">
                 <form  (ngSubmit)= "checkLogin()" [formGroup]="signInForm">
                     <div class="form-group">
@@ -12,11 +13,11 @@
                         <label for="Password">Password</label>
                         <input type="password" formControlName="password" placeholder="Password" class="form-control"/>
                     </div>
-                    <button type="submit" class="btn btn-primary"> 
+                    <button type="submit" class="btn border"> 
                         Login
                     </button>
                 </form>
-                <p class="pt-3"><a [routerLink]="'/app-register'" class="text-secondary">Click Here to Join RJ Mobile</a></p>
+                <p class="pt-3"><a [routerLink]="'/app-register'" class="text">Click Here to Join RJ Mobile</a></p>
             </div>
         </div>
     </div>

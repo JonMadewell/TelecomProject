@@ -11,5 +11,14 @@
 .special-card{
     background-color: transparent;
 }
+.mat-card-title{
+    background-color: orange;
+    color: white;
+}
+
+.btn{
+    background-color: orange;
+    color: white; 
+}
   
   
