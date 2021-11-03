@@ -90,20 +90,21 @@ namespace TelecomProject.API.Controllers
         [AllowAnonymous]
         [HttpPost]
 
-        public async Task<ActionResult<Person>> PostPerson([FromQuery] string firstName, string lastName, string email, string userName, string password)
+        public async Task<ActionResult<Person>> PostPerson([FromBody] Person person)
         {
-            var person = new Person();
-            var login = new Login();
+            var person1 = new Person();
             var account = new Account();
+            var login = new Login();
+            person1.FirstName = person.FirstName;
+            person1.LastName = person.LastName;
+            person1.Email = person.Email;
+            login.Username = person.Login.Username;
+            login.Password = person.Login.Password;
+            person1.Login = login;
+            person1.Account = account;
 
-            person.FirstName = firstName;
-            person.LastName = lastName;
-            person.Email = email;
-            login.Username = userName;
-            login.Password = password;
-            person.Login = login;
-            person.Account = account;
-            _context.People.Add(person);
+            
+            _context.People.Add(person1);
             await _context.SaveChangesAsync();
 
 
@@ -116,7 +117,7 @@ namespace TelecomProject.API.Controllers
 
         // DELETE: api/People/5
         [HttpDelete("DeleteAccount")]
-        public async Task<IActionResult> DeletePerson([FromQuery] string email)
+        public async Task<IActionResult> DeletePerson([FromBody] string email)
         {
             var person = await _context.People.FirstOrDefaultAsync(p => p.Email == email);
             if (person == null)
@@ -159,20 +160,14 @@ namespace TelecomProject.API.Controllers
             var plans =  person.Account.plans.ToList();
             var plan = plans.FirstOrDefault(p => p.PlanId == planId);
             var device = await _context.Devices.Include(d => d.People).FirstOrDefaultAsync(d => d.DeviceId == DeviceId);
+            string phoneNumber = new Random().Next(1000000000, 2147483647).ToString();
 
             if(person.Devices.Count < plan.DeviceLimit)
             {
-                person.Devices.Add(device);
-                device.People.Add(person);                
+                _context.Database.ExecuteSqlInterpolated($"INSERT into dbo.PersonDevice (PersonId, DeviceId, PhoneNumber) VALUES ({person.PersonId}, {device.DeviceId}, {phoneNumber})");
+
                 await _context.SaveChangesAsync();
 
-                //var p_d = await _context.Set<PersonDevice>().SingleOrDefaultAsync(pd => pd.PersonId == person.PersonId && pd.DeviceId == device.DeviceId);
-                //if (p_d != null)
-                //{
-                //    p_d.PhoneNumber = new Random().Next(1000000000, 2147483647).ToString();
-                //}
-                //_context.Entry(p_d).State = EntityState.Modified;
-                //await _context.SaveChangesAsync();
 
                 return NoContent();
             }
@@ -183,13 +178,12 @@ namespace TelecomProject.API.Controllers
         public async Task<IActionResult> AddPlan([FromQuery]int planId)
         {
             string userName = HttpContext.User.Identity.Name;
-            var person = await _context.People.Include(p => p.Devices).Include(p => p.Login).Include(p => p.Account).FirstOrDefaultAsync(p => p.Login.Username == userName);
-            var plan = person.Account.plans.FirstOrDefault(p => p.PlanId == planId);
+            var person = await _context.People.Include(p => p.Devices).Include(p => p.Login).Include(p => p.Account).ThenInclude(a => a.plans).FirstOrDefaultAsync(p => p.Login.Username == userName);
+            var plan = await _context.Plans.FirstOrDefaultAsync(p => p.PlanId == planId);
 
+            _context.Database.ExecuteSqlInterpolated($"INSERT into dbo.AccountPlans (AccountsAccountId, PlanId, AccountNumber) VALUES ({person.Account.AccountId}, {plan.PlanId}, {person.Account.AccountId})");
 
-            person.Account.plans.Add(plan);
-
-            _context.Entry(person).State = EntityState.Modified;
+            
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -206,8 +200,8 @@ namespace TelecomProject.API.Controllers
                 return NotFound();
             }
 
-            person.Devices.Remove(device);
-            _context.Entry(person).State = EntityState.Modified;
+
+            _context.Database.ExecuteSqlInterpolated($"DELETE from dbo.PersonDevice WHERE PersonId = {person.PersonId} AND DeviceID = {device.DeviceId}");
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -216,15 +210,14 @@ namespace TelecomProject.API.Controllers
         public async Task<IActionResult> DeletePlan([FromQuery] int planId)
         {
             string userName = HttpContext.User.Identity.Name;
-            var person = await _context.People.Include(p => p.Login).Include(p => p.Devices).Include(p => p.Account.plans).FirstOrDefaultAsync(p => p.Login.Username == userName);
+            var person = await _context.People.Include(p => p.Login).Include(p => p.Devices).Include(p => p.Account).ThenInclude(a => a.plans).FirstOrDefaultAsync(p => p.Login.Username == userName);
             var plan = person.Account.plans.FirstOrDefault(p => p.PlanId == planId);
             if (person == null)
             {
                 return NotFound();
             }
 
-            person.Account.plans.Remove(plan);
-            _context.Entry(person).State = EntityState.Modified;
+            _context.Database.ExecuteSqlInterpolated($"DELETE from dbo.AccountPlans WHERE PlanId = {plan.PlanId} AND AccountsAccountID = {person.Account.AccountId}");
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -233,7 +226,7 @@ namespace TelecomProject.API.Controllers
         public async Task<IEnumerable<Device>> ViewDevices()
         {
             string userName = HttpContext.User.Identity.Name;
-            var person = await _context.People.Include(p => p.Login).Include(p => p.Devices).Include(p => p.Account.plans).FirstOrDefaultAsync(p => p.Login.Username == userName);
+            var person = await _context.People.Include(p => p.Login).Include(p => p.Devices).Include(p => p.Account).ThenInclude(a => a.plans).FirstOrDefaultAsync(p => p.Login.Username == userName);
             var devices = person.Devices.ToList();
             //var devices = await _context.Devices.Include(d => d.People).ToListAsync();
 
@@ -247,6 +240,19 @@ namespace TelecomProject.API.Controllers
             var plans = person.Account.plans.ToList();
 
             return plans;
+        }
+        [HttpGet("GetPhoneNumber")]
+        public async Task<ActionResult<string>> ViewPhoneNumber([FromQuery] int deviceId)
+        {
+            string userName = HttpContext.User.Identity.Name;
+
+            var person = await _context.People.Include(p => p.Login).Include(p => p.Devices).Include(p => p.Account).ThenInclude(a => a.plans).FirstOrDefaultAsync(p => p.Login.Username == userName);
+
+            var p_d = await _context.Set<PersonDevice>().SingleOrDefaultAsync(pd => pd.PersonId == person.PersonId && pd.DeviceId == deviceId);
+
+            string phoneNumber = p_d.PhoneNumber;
+
+            return phoneNumber;
         }
     }
 }
