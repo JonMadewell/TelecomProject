@@ -14,7 +14,7 @@ export class HttpClientService {
   constructor( private httpClient: HttpClient) { }
 
   registerPerson(Person: Person):Observable<Person>{
-    return this.httpClient.post<Person>("https://localhost:44394/api/People/", Person)
+    return this.httpClient.post<Person>("https://localhost:44394/api/People/", Person,)
   }
 
   getUser( UserName: string, Password: string){
