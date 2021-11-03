@@ -3,7 +3,10 @@ import { HttpClientService } from './http-client.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+<<<<<<< Updated upstream
 import { Router } from '@angular/router';
+=======
+>>>>>>> Stashed changes
 import { User } from '../Models/user.model';
 
 @Injectable({

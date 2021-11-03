@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+<<<<<<< Updated upstream
 import { ActivatedRoute, Router } from '@angular/router';
+=======
+import { Router } from '@angular/router';
+>>>>>>> Stashed changes
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
 

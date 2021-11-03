@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+<<<<<<< Updated upstream
 import { ReactiveFormsModule } from '@angular/forms';
+=======
+>>>>>>> Stashed changes
 import { RegisterComponent } from './register.component';
 
 
