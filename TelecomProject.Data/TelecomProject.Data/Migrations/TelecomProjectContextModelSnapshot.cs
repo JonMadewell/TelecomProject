@@ -38,19 +38,19 @@ namespace TelecomProject.Data.Migrations
 
             modelBuilder.Entity("Telecom.Domain.AccountPlans", b =>
                 {
-                    b.Property<int>("AccountsAccountId1")
+                    b.Property<int>("AccountsAccountId")
                         .HasColumnType("int");
 
                     b.Property<int>("PlanId")
                         .HasColumnType("int");
 
+                    b.Property<int>("AccountNumber")
+                        .HasColumnType("int");
+
                     b.Property<int>("AccountPlanId")
                         .HasColumnType("int");
 
-                    b.Property<int>("AccountsAccountId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AccountsAccountId1", "PlanId");
+                    b.HasKey("AccountsAccountId", "PlanId");
 
                     b.HasIndex("PlanId");
 
@@ -64,7 +64,16 @@ namespace TelecomProject.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("PhoneNumber")
+                    b.Property<string>("Camera")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DeviceDis")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DeviceName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Storage")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("DeviceId");
@@ -88,11 +97,14 @@ namespace TelecomProject.Data.Migrations
 
                     b.Property<string>("Username")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("LoginId");
 
                     b.HasIndex("PersonId")
+                        .IsUnique();
+
+                    b.HasIndex("Username")
                         .IsUnique();
 
                     b.ToTable("logins");
@@ -141,11 +153,18 @@ namespace TelecomProject.Data.Migrations
                     b.Property<int>("PersonId")
                         .HasColumnType("int");
 
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("PersonDeviceId");
 
                     b.HasIndex("DeviceId");
 
                     b.HasIndex("PersonId");
+
+                    b.HasIndex("PhoneNumber")
+                        .IsUnique()
+                        .HasFilter("[PhoneNumber] IS NOT NULL");
 
                     b.ToTable("PersonDevice");
                 });
@@ -189,7 +208,7 @@ namespace TelecomProject.Data.Migrations
                 {
                     b.HasOne("Telecom.Domain.Account", null)
                         .WithMany()
-                        .HasForeignKey("AccountsAccountId1")
+                        .HasForeignKey("AccountsAccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

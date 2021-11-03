@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClientService } from '../http-client.service';
-import { Plan } from '../plan.model';
+import { Plan } from 'src/app/Models/plan.model';
+import { HttpClientService } from 'src/app/Services/http-client.service';
 
 @Component({
   selector: 'app-plans',

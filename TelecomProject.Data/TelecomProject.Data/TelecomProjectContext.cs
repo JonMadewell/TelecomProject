@@ -58,6 +58,13 @@ namespace TelecomProject.Data
                 .UsingEntity<AccountPlans>(ap => ap.HasOne<Plan>().WithMany(),
                                            ap => ap.HasOne<Account>().WithMany());
 
+            modelBuilder.Entity<PersonDevice>()
+                .HasIndex(d => d.PhoneNumber)
+                .IsUnique();
+
+            modelBuilder.Entity<Login>()
+                .HasIndex(l => l.Username)
+                .IsUnique();
         }
     }
 }

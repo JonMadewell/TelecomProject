@@ -1,0 +1,23 @@
+<div class="content">
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+        <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let devices of devices">
+        <mat-card class="mat-elevation-z4 border rounded-top border-primary">
+            <mat-card-header>
+                <mat-card-title class="h3">Device: {{devices.DeviceName}}</mat-card-title>
+            </mat-card-header>
+            <img mat-card-image src="/assets/signUp.jpg" class="card-img-top" alt="plan1"/>
+            <mat-card-content>
+                <p class="card-text">{{devices.deviceId}}</p>
+            </mat-card-content>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Camera: {{devices.Camera}}</li>
+                <li class="list-group-item">Storage: {{devices.Storage}}</li>
+                <li class="list-group-item">Battery Life: {{devices.BatteryLife}}</li>
+            </ul>
+            <mat-card-actions>
+                <button mat-button href="#" >View Device</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>  
+</div>

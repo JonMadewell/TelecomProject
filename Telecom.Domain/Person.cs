@@ -32,5 +32,8 @@ namespace Telecom.Domain
 
         public List<Device> Devices { get; set; }
 
+        
+
+
     }
 }

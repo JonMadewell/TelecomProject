@@ -1,7 +1,7 @@
-import { Device } from './device.model';
+import { device } from './device.model';
 
 describe('Device', () => {
   it('should create an instance', () => {
-    expect(new Device()).toBeTruthy();
+    expect(new device()).toBeTruthy();
   });
 });
