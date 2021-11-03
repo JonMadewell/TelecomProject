@@ -3,39 +3,56 @@ import { HttpClientService } from './http-client.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { User } from 'src/app/Models/user.model';
+import { User } from 'src/app/user.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  constructor(private httpClient: HttpClient){}
+  private userSubject: BehaviorSubject<User>;
+  public user: Observable<User>;
+  constructor(private httpClient: HttpClient){
+    this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem("currentUser") || '{}'));
+    this.user = this.userSubject.asObservable();
+  }
 
   authentiate(username:string, password:string){
-    const headers = new HttpHeaders ({Authorization: 'Basic ' + btoa(username + ':' + password)})
-    return this.httpClient.post<User>('https://localhost:44394/api/People/Login', {headers}).pipe(
-      map(
-        userData =>{
-          sessionStorage.setItem('username', username)
-          return userData;
-        }
-      )
-    );
+    return this.httpClient
+    .post<any>('https://localhost:44394/api/People/Login' , {
+      username,
+      password
+    })
+    .pipe(
+      map(user => {
+        console.log("user info", user);
+        let authData = window.btoa(username + ":" + password);
+        console.log("user info", authData);
+
+        localStorage.setItem("currentUser", JSON.stringify(user))
+
+
+        return user;
+      })
+    )
+  }
+
+  public get userValue(): User{
+    return this.userSubject.value;
   }
 
   isUserLoggedIn(){
-    let user = sessionStorage.getItem('username')
+    let user = localStorage.getItem('currentUser')
     console.log(!(user== null))
     return !(user === null)
   }
 
   logOut(){
-    sessionStorage.removeItem('username')
+    localStorage.removeItem('currentUser')
   }
 
 
 }
-
 
 
 
