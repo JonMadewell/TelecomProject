@@ -11,7 +11,7 @@ import { HttpClientService } from 'src/app/Services/http-client.service';
   templateUrl: './portal.component.html',
   styleUrls: ['./portal.component.css']
 })
-export class PortalComponent implements OnInit, OnDestroy {
+export class PortalComponent implements OnInit{
  error: string= "";
  subscription: Subscription = new Subscription;
  person: Person = new Person;
@@ -20,20 +20,15 @@ export class PortalComponent implements OnInit, OnDestroy {
    this.person= this._auth.userValue
     
   }
-  ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
-  }
 
   ngOnInit(): void { 
     var user = JSON.parse(JSON.stringify(this.person));
-    console.log(user)
     this.person.FirstName = user.firstName;
     this.person.LastName= user.lastName;
     this.person.Email = user.email;
     this.person.account.accountId= user.account.accountId;
     this.person.account.personId = user.account.personId;
     this.plans= user.account.plans
-    console.log(this.person.account.plans)
   }
     
 
