@@ -23,6 +23,10 @@ export class HttpClientService {
       return this.httpClient.post<User>("https://localhost:44394/api/People/Login", {headers})
   }
 
+  getInfo(): Observable<Person>{
+    return this.httpClient.get<Person>("https://localhost:44394/api/People/ViewInfo")
+  }
+
   getPlans(){
     return this.httpClient.get<Plan>("https://localhost:44394/api/Plans");
   }

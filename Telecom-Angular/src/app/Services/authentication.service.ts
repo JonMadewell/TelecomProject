@@ -28,7 +28,6 @@ export class AuthenticationService {
         console.log("user info", user);
         let authData = window.btoa(username + ":" + password);
         console.log("user info", authData);
-
         localStorage.setItem("currentUser", JSON.stringify(user))
 
 
