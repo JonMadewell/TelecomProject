@@ -15,7 +15,11 @@ export class HttpClientService {
 
   registerPerson(Person: Person):Observable<Person>{
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     return this.httpClient.post<Person>("https://telecomprojectapijmrt.azurewebsites.net/api/people", Person,)
+=======
+    return this.httpClient.post<Person>("https://telecomprojectapijmrt.azurewebsites.net/api/People/", Person,)
+>>>>>>> Stashed changes
 =======
     return this.httpClient.post<Person>("https://telecomprojectapijmrt.azurewebsites.net/api/People/", Person,)
 >>>>>>> Stashed changes
@@ -25,7 +29,11 @@ export class HttpClientService {
     
       const headers = new HttpHeaders({Authorization: 'basic' + btoa(UserName + ':' + Password)});
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       return this.httpClient.post<User>("https://telecomprojectapijmrt.azurewebsites.net/api/people/ViewInfo", {headers})
+=======
+      return this.httpClient.post<User>("https://telecomprojectapijmrt.azurewebsites.net/api/People/Login", {headers})
+>>>>>>> Stashed changes
 =======
       return this.httpClient.post<User>("https://telecomprojectapijmrt.azurewebsites.net/api/People/Login", {headers})
 >>>>>>> Stashed changes
@@ -65,6 +73,9 @@ export class HttpClientService {
 
   getPhone(PhoneId: number){
     return this.httpClient.get<Plan>("https://telecomprojectapijmrt.azurewebsites.net/api/Devices");
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   }
 }
