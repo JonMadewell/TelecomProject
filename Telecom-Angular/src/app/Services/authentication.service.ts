@@ -5,15 +5,17 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { User } from '../Models/user.model';
+import { Person } from '../Models/person.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private userSubject: BehaviorSubject<User>;
-  public user: Observable<User>;
+  private userSubject: BehaviorSubject<Person>;
+  public user: Observable<Person>;
+  public person: Person = new Person;
   constructor(private httpClient: HttpClient){
-    this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem("currentUser") || '{}'));
+    this.userSubject = new BehaviorSubject<Person>(JSON.parse(localStorage.getItem("currentUser") || '{}'));
     this.user = this.userSubject.asObservable();
   }
 
@@ -36,9 +38,13 @@ export class AuthenticationService {
     )
   }
 
-  public get userValue(): User{
+  public get userValue(): Person{
     return this.userSubject.value;
   }
+
+  public get userData(): Observable<Person>{
+    return this.user;
+  } 
 
   isUserLoggedIn(){
     let user = localStorage.getItem('currentUser')

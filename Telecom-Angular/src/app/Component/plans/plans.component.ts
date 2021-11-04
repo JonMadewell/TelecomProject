@@ -17,9 +17,12 @@ export class PlansComponent implements OnInit {
   constructor(private httpService: HttpClientService, private router: Router, private activeRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.httpService.getPlans().subscribe(data => {
-      this.plans = data
-    });
+    this.httpService.getPlans().subscribe((  
+          response: any) => this.handleSuccessfulResponse(response),
+    );
   }
 
+  handleSuccessfulResponse(response: Plan[]){
+    this.plans= response;
+  }
 }
