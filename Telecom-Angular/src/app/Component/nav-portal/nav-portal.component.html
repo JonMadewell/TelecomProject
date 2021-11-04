@@ -1,6 +1,6 @@
 <nav class="navbar  static-top">
     <div class="container">
         <a class="navbar-brand" href="#!">RJ Mobile</a>
-        <button type="submit" class="border" (click)="logOut()">Logout</button>
+        <button type="submit" class="btn" [routerLink]="['/app-sign-in']" (click)="ngOnDestroy()"  >Logout</button>
     </div>
 </nav>
