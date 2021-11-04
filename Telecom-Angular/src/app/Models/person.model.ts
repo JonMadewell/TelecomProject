@@ -1,6 +1,5 @@
 import { Account } from "./account.model";
-import { device } from "./device.model";
-import { Plan } from "./plan.model";
+
 
 export class Person {
     PersonId: number = 0;

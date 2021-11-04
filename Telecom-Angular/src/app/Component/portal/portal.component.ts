@@ -33,7 +33,7 @@ export class PortalComponent implements OnInit, OnDestroy {
     this.person.account.accountId= user.account.accountId;
     this.person.account.personId = user.account.personId;
     this.plans= user.account.plans
-    console.log(this.person.account.plans)
+    console.log(this.person.FirstName)
   }
     
 
