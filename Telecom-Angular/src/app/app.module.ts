@@ -21,6 +21,7 @@ import { RegisterComponent } from './Component/register/register.component';
 import { NavPortalComponent } from './Component/nav-portal/nav-portal.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PlanDetailsComponent } from './Component/plan-details/plan-details.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     DevicesComponent,
     HomeComponent,
     RegisterComponent,
-    NavPortalComponent
+    NavPortalComponent,
+    PlanDetailsComponent
   ],
   imports: [
     BrowserModule,
