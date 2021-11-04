@@ -1,0 +1,27 @@
+#cover {
+    background: #222 url('/assets/signUp.jpg') center center no-repeat;
+    background-size: cover;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.special-card{
+    background-color: transparent;
+}
+
+.card-header{
+    background-color: rgb(219, 161, 52);
+}
+.btn{
+    background-color: orange;
+    font-weight: bolder;
+    color: white;
+    border: 5px;
+    border-color: black;
+}
+.text{
+    color:rgb(219, 161, 52)
+}
