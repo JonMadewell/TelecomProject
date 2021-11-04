@@ -18,9 +18,10 @@ export class AuthenticationInterceptorService implements HttpInterceptor {
     if(isLoggedIn){
       request = request.clone({
         setHeaders: {          
-          Authorization: 'Basic ${user.authdata}'
+          Authorization: `Basic ${user.authdata}`
         }
       });
+      console.log("added Authorization Header");
     }
     return next.handle(request);
   }

@@ -49,8 +49,7 @@ namespace TelecomProject.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TelecomProject.API", Version = "v1" });
             });
 
-            services.AddAuthentication("BasicAuthentication")
-                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
+
 
 
             // var key = "ThisIsTheKey";
@@ -72,7 +71,7 @@ namespace TelecomProject.API
             //    };
             //});
 
-            services.AddScoped<ILoginService, LoginService>();
+           
             
             //services.AddSingleton<IJwtAuthHandler>(new JwtAuthHandler(key, _context));
 
@@ -82,12 +81,16 @@ namespace TelecomProject.API
                 {
                     builder.WithOrigins("http://localhost:4200")
                     .AllowAnyHeader()
+                    .WithHeaders("Authorization")                    
                     .AllowAnyMethod()
-                    .WithExposedHeaders("*", "Authorization");
+                    .WithExposedHeaders("Authorization")
+                    .AllowCredentials();
                 });
             });
 
-
+            services.AddScoped<ILoginService, LoginService>();
+            services.AddAuthentication("BasicAuthentication")
+            .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
 
         }
 
@@ -105,7 +108,7 @@ namespace TelecomProject.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors();
             app.UseAuthentication();
 
             app.UseAuthorization();
@@ -115,7 +118,7 @@ namespace TelecomProject.API
                 endpoints.MapControllers();
             });
 
-            app.UseCors();
+
         }
     }
 }

@@ -12,4 +12,8 @@ export class NavPortalComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  logOut(){
+    localStorage.removeItem('currentUser');
+  }
+
 }
