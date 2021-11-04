@@ -52,6 +52,23 @@ namespace TelecomProject.API.Controllers
             return person;
         }
 
+        [HttpGet("GetPersonByLogin")]
+        public async Task<ActionResult<Person>> GetPerson([FromBody]Login login)
+        {
+            var login1 = new Login();
+
+            login1.Username = login.Username;
+
+            var person = await _context.People.Include(p => p.Login).Include(p => p.Account.plans).Include(p => p.Devices).FirstOrDefaultAsync(person => person.Login.Username == login1.Username);
+
+            if (person == null)
+            {
+                return NotFound();
+            }
+
+            return person;
+        }
+
         // PUT: api/People/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("UpdatePerson")]
@@ -147,7 +164,7 @@ namespace TelecomProject.API.Controllers
                 return BadRequest(new { message = "Username or password is incorrect" });
             }
 
-           
+            Response.Headers.Add("Access-Control-Expose-Headers", "Authorization");
 
             return Ok(person);
         }

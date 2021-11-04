@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { User } from '../Models/user.model';
 import { Plan } from '../Models/plan.model';
 import { device } from '../Models/device.model';
@@ -23,12 +23,12 @@ export class HttpClientService {
       return this.httpClient.post<User>("https://localhost:44394/api/People/Login", {headers})
   }
 
-  getPlans(){
-    return this.httpClient.get<Plan>("https://localhost:44394/api/Plans");
+  getPlans(): Observable<Plan[]>{
+    return this.httpClient.get<Plan[]>("https://localhost:44394/api/Plans");
   }
 
-  getPlan(PlanId: number){
-    return this.httpClient.get<Plan>("https://localhost:44394/api/Plans");
+  getPlan(planId: number): Observable<Plan>{
+    return this.httpClient.get<Plan>("https://localhost:44394/api/Plans" + `/${planId}`);
   }
 
   getDevices(){

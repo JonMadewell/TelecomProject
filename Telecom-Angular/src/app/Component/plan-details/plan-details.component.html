@@ -1,0 +1,15 @@
+<h1>Plan Details</h1>
+
+<div>
+    <h4>Plan</h4>
+    <hr />
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Plan Name: {{plan.planName}}</li>
+        <li class="list-group-item">Device Limit: {{plan.deviceLimit}}</li>
+        <li class="list-group-item">Unlimited: {{plan.isUnlimited}}</li>
+        <li class="list-group-item">Monthly Price: {{plan.price}}</li>
+    </ul>
+</div>
+<div>
+    <a [routerLink]="['/']">Back To Home</a>
+</div>
