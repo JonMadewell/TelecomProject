@@ -14,32 +14,32 @@ export class HttpClientService {
   constructor( private httpClient: HttpClient) { }
 
   registerPerson(Person: Person):Observable<Person>{
-    return this.httpClient.post<Person>("https://localhost:44394/api/People/", Person,)
+    return this.httpClient.post<Person>("https://telecomprojectapijmrt.azurewebsites.net/api/people", Person,)
   }
 
   getUser( UserName: string, Password: string){
     
       const headers = new HttpHeaders({Authorization: 'basic' + btoa(UserName + ':' + Password)});
-      return this.httpClient.post<User>("https://localhost:44394/api/People/Login", {headers})
+      return this.httpClient.post<User>("https://telecomprojectapijmrt.azurewebsites.net/api/people/ViewInfo", {headers})
   }
 
   getInfo(): Observable<Person>{
-    return this.httpClient.get<Person>("https://localhost:44394/api/People/ViewInfo")
+    return this.httpClient.get<Person>("https://telecomprojectapijmrt.azurewebsites.net/api/People/ViewInfo")
   }
 
-  getPlans(){
-    return this.httpClient.get<Plan>("https://localhost:44394/api/Plans");
+  getPlans(): Observable<Plan[]>{
+    return this.httpClient.get<Plan[]>("https://telecomprojectapijmrt.azurewebsites.net/api/Plans");
   }
 
-  getPlan(PlanId: number){
-    return this.httpClient.get<Plan>("https://localhost:44394/api/Plans");
+  getPlan(PlanId: number): Observable<Plan>{
+    return this.httpClient.get<Plan>("https://telecomprojectapijmrt.azurewebsites.net/api/Plans");
   }
 
-  getDevices(){
-    return this.httpClient.get<device>("https://localhost:44394/api/Devices");
+  getDevices(): Observable<device[]>{
+    return this.httpClient.get<device[]>("https://telecomprojectapijmrt.azurewebsites.net/api/Devices");
   }
 
-  getPhone(PhoneId: number){
-    return this.httpClient.get<Plan>("https://localhost:44394/api//Devices");
+  getPhone(deviceId: number){
+    return this.httpClient.get<device>("https://telecomprojectapijmrt.azurewebsites.net/api/Devices");
   }
 }

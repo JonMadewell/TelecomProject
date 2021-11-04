@@ -19,7 +19,7 @@ export class AuthenticationService {
 
   authentiate(username:string, password:string){
     return this.httpClient
-    .post<any>('https://localhost:44394/api/People/Login' , {
+    .post<any>('https://telecomprojectapijmrt.azurewebsites.net/api/People/Login' , {
       username,
       password
     })

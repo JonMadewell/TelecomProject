@@ -1,0 +1,925 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "TelecomProject.API",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/Accounts": {
+      "get": {
+        "tags": [
+          "Accounts"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Account"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Accounts"
+        ],
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Account"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Account"
+            }
+          }
+        }
+      }
+    },
+    "/api/Accounts/GetAccountPlans": {
+      "get": {
+        "tags": [
+          "Accounts"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Plan"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Accounts/EditAccount": {
+      "put": {
+        "tags": [
+          "Accounts"
+        ],
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Account"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Accounts/{id}": {
+      "delete": {
+        "tags": [
+          "Accounts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Devices": {
+      "get": {
+        "tags": [
+          "Devices"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Device"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Devices"
+        ],
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Device"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Device"
+            }
+          }
+        }
+      }
+    },
+    "/api/Devices/{id}": {
+      "get": {
+        "tags": [
+          "Devices"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Device"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Devices"
+        ],
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Device"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Devices"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/People": {
+      "get": {
+        "tags": [
+          "People"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Person"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "People"
+        ],
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Person"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Person"
+            }
+          }
+        }
+      }
+    },
+    "/api/People/ViewInfo": {
+      "get": {
+        "tags": [
+          "People"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Person"
+            }
+          }
+        }
+      }
+    },
+    "/api/People/GetPersonByLogin": {
+      "get": {
+        "tags": [
+          "People"
+        ],
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Login"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Person"
+            }
+          }
+        }
+      }
+    },
+    "/api/People/UpdatePerson": {
+      "put": {
+        "tags": [
+          "People"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "firstName",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "lastName",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "email",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/People/DeleteAccount": {
+      "delete": {
+        "tags": [
+          "People"
+        ],
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/People/Login": {
+      "post": {
+        "tags": [
+          "People"
+        ],
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Login"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/People/AddDevice": {
+      "put": {
+        "tags": [
+          "People"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "DeviceId",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "query",
+            "name": "planId",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/People/AddPlan": {
+      "put": {
+        "tags": [
+          "People"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "planId",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/People/DeleteDevice": {
+      "put": {
+        "tags": [
+          "People"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "deviceId",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/People/DeletePlan": {
+      "put": {
+        "tags": [
+          "People"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "planId",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/People/GetDevicesForPerson": {
+      "get": {
+        "tags": [
+          "People"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Device"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/People/GetPlansForPerson": {
+      "get": {
+        "tags": [
+          "People"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Plan"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/People/GetPhoneNumber": {
+      "get": {
+        "tags": [
+          "People"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "deviceId",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/api/Plans": {
+      "get": {
+        "tags": [
+          "Plans"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Plan"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Plans"
+        ],
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Plan"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Plan"
+            }
+          }
+        }
+      }
+    },
+    "/api/Plans/{id}": {
+      "get": {
+        "tags": [
+          "Plans"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Plan"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Plans"
+        ],
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Plan"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Plans"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Login": {
+      "required": [
+        "password",
+        "username"
+      ],
+      "type": "object",
+      "properties": {
+        "loginId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "personId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "person": {
+          "$ref": "#/definitions/Person"
+        },
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "Device": {
+      "type": "object",
+      "properties": {
+        "deviceId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "deviceName": {
+          "type": "string"
+        },
+        "camera": {
+          "type": "string"
+        },
+        "storage": {
+          "type": "string"
+        },
+        "deviceDis": {
+          "type": "string"
+        },
+        "people": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Person"
+          }
+        }
+      }
+    },
+    "Person": {
+      "required": [
+        "email",
+        "firstName",
+        "lastName"
+      ],
+      "type": "object",
+      "properties": {
+        "personId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "accountId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "account": {
+          "$ref": "#/definitions/Account"
+        },
+        "loginId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "login": {
+          "$ref": "#/definitions/Login"
+        },
+        "devices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Device"
+          }
+        }
+      }
+    },
+    "Plan": {
+      "type": "object",
+      "properties": {
+        "planId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "planName": {
+          "type": "string"
+        },
+        "deviceLimit": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "isUnlimited": {
+          "type": "boolean"
+        },
+        "price": {
+          "format": "double",
+          "type": "number"
+        },
+        "accounts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Account"
+          }
+        }
+      }
+    },
+    "Account": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "personId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "person": {
+          "$ref": "#/definitions/Person"
+        },
+        "plans": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Plan"
+          }
+        }
+      }
+    }
+  }
+}

@@ -3,6 +3,5 @@ export class device {
     DeviceName: string = "";
     Camera: string="";
     Storage: string="";
-    BatteryLife: string="";
     DeviceDis: string="";
 }
