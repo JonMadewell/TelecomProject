@@ -1,0 +1,50 @@
+#cover {
+    background: #222 url('/assets/4phoneplan.jpg') center center no-repeat;
+    background-size: cover;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.special-card{
+    background-color: transparent;
+}
+
+.card-header{
+    background-color: rgb(219, 161, 52);
+    color: white;
+}
+.btn{
+    background-color: orange;
+    font-weight: bolder;
+    color: white;
+    border: 5px;
+    border-color: black;
+}
+.text{
+    color:rgb(219, 161, 52)
+}
+.h2{
+    background-color: rgb(219, 161, 52);
+    color: white;
+    text-align: center;
+    margin-bottom: 0px;
+    padding-bottom: 10px;
+}
+
+.list-group-item{
+    text-align: left;
+    font-weight: bold;
+}
+h5{
+    color: orange;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size:x-large;
+    font-weight: bold;
+}
+hr{
+    margin-top: 0px;
+    border: 2px solid orange;
+}

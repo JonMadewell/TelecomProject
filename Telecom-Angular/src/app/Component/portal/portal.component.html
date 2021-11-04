@@ -1,2 +1,30 @@
 <app-nav-portal></app-nav-portal>
+<div [ngClass]="person" class="h2">Welcome to RJ Mobile {{person.FirstName}} {{person.LastName}}</div>
+    <div id="cover" class="h-100">
+    <div [ngClass]="person" class="col-md-6 offset-md-3 mb-5">
+        <div class="card">
+            <h4 class="card-header">Welcome to RJ Mobole {{person.FirstName}} {{person.LastName}}</h4>
+                <div class="card-body bg-gradient-light">
+                    <h5>User Information</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Name:  {{person.FirstName}} {{person.LastName}}</li>
+                        <li class="list-group-item">Account Id:  {{person.account.accountId}}</li>
+                        <li class="list-group-item">Email:  {{person.Email}}</li>
+                        <p class="pt-3"><a [routerLink]="'/app-register'" class="btn">Update Information</a></p>
+                    </ul>
+                    <hr>
+                    <h5>View Your Plans</h5>
+                    <div class="btn-group mr-3">
+                        <button type="button" class="btn btn-primary">Load Plan</button>
+                        <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+                          <button class="btn btn-primary dropdown-toggle-split" ngbDropdownToggle></button>
+                          <div class="dropdown-menu" ngbDropdownMenu *ngFor="let plans of plans">
+                            <button ngbDropdownItem>Plan Id: {{plans.planId}}- {{plans.planName}}</button>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+        </div>
+    </div>
+</div>
 

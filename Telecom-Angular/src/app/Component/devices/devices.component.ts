@@ -15,7 +15,7 @@ export class DevicesComponent implements OnInit {
 
   ngOnInit(): void {
     this.httpService.getDevices().subscribe(
-      (      response: any) => this.handleSuccessfulResponse(response),
+      ( response: any) => this.handleSuccessfulResponse(response),
     );
   }
 

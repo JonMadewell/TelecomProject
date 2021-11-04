@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { first } from 'rxjs/operators';
+import { User } from 'src/app/Models/user.model';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
 
 @Component({
@@ -11,6 +12,7 @@ import { AuthenticationService } from 'src/app/Services/authentication.service';
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit {
+  user: User = new User;
   signInForm: FormGroup = this.fb.group({
   userName: ['',Validators.required],
   password: ['',Validators.required]
