@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Telecom.Domain;
 using TelecomProject.API.Handlers;
 using TelecomProject.API.Services;
@@ -164,7 +165,8 @@ namespace TelecomProject.API.Controllers
                 return BadRequest(new { message = "Username or password is incorrect" });
             }
 
-            Response.Headers.Add("Access-Control-Expose-Headers", "Authorization");
+            Response.Headers.Add("Authorization", JsonConvert.SerializeObject(login));
+            Response.Headers.Add("Access-Control-Allow-Headers", "Authorization");
 
             return Ok(person);
         }
