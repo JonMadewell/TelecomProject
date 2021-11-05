@@ -2138,31 +2138,6 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
-      },
-      "TelecomProject.Data/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v5.0",
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore": "5.0.11",
-          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.11",
-          "TelecomProject.Domain": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/TelecomProject.Data.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/TelecomProject.Data.dll": {}
-        }
-      },
-      "TelecomProject.Domain/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v5.0",
-        "compile": {
-          "bin/placeholder/TelecomProject.Domain.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/TelecomProject.Domain.dll": {}
-        }
       }
     }
   },
@@ -7442,47 +7417,37 @@
         "system.xml.xmlserializer.4.3.0.nupkg.sha512",
         "system.xml.xmlserializer.nuspec"
       ]
-    },
-    "TelecomProject.Data/1.0.0": {
-      "type": "project",
-      "path": "../TelecomProject.Data/TelecomProject.Data/TelecomProject.Data.csproj",
-      "msbuildProject": "../TelecomProject.Data/TelecomProject.Data/TelecomProject.Data.csproj"
-    },
-    "TelecomProject.Domain/1.0.0": {
-      "type": "project",
-      "path": "../Telecom.Domain/TelecomProject.Domain.csproj",
-      "msbuildProject": "../Telecom.Domain/TelecomProject.Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "C:\\Users\\ryant\\source\\repos\\new folde\\TelecomProject.Data\\TelecomProject.Data\\TelecomProject.Data.csproj",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 5.0.11",
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 5.0.11",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.11",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.11",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 5.0.2",
-      "Swashbuckle.AspNetCore >= 5.6.3",
-      "TelecomProject.Data >= 1.0.0"
+      "Swashbuckle.AspNetCore >= 5.6.3"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jonma\\.nuget\\packages\\": {},
+    "C:\\Users\\ryant\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Skillstorm\\Projects\\Telecom\\TelecomProject.API\\TelecomProject.API.csproj",
+      "projectUniqueName": "C:\\Users\\ryant\\source\\repos\\new folde\\TelecomProject.API\\TelecomProject.API.csproj",
       "projectName": "TelecomProject.API",
-      "projectPath": "D:\\Skillstorm\\Projects\\Telecom\\TelecomProject.API\\TelecomProject.API.csproj",
-      "packagesPath": "C:\\Users\\jonma\\.nuget\\packages\\",
-      "outputPath": "D:\\Skillstorm\\Projects\\Telecom\\TelecomProject.API\\obj\\",
+      "projectPath": "C:\\Users\\ryant\\source\\repos\\new folde\\TelecomProject.API\\TelecomProject.API.csproj",
+      "packagesPath": "C:\\Users\\ryant\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ryant\\source\\repos\\new folde\\TelecomProject.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\jonma\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ryant\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -7491,14 +7456,15 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://packagesource": {}
       },
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "D:\\Skillstorm\\Projects\\Telecom\\TelecomProject.Data\\TelecomProject.Data\\TelecomProject.Data.csproj": {
-              "projectPath": "D:\\Skillstorm\\Projects\\Telecom\\TelecomProject.Data\\TelecomProject.Data\\TelecomProject.Data.csproj"
+            "C:\\Users\\ryant\\source\\repos\\new folde\\TelecomProject.Data\\TelecomProject.Data\\TelecomProject.Data.csproj": {
+              "projectPath": "C:\\Users\\ryant\\source\\repos\\new folde\\TelecomProject.Data\\TelecomProject.Data\\TelecomProject.Data.csproj"
             }
           }
         }
@@ -7561,5 +7527,16 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1105",
+      "level": "Error",
+      "message": "Unable to find project information for 'C:\\Users\\ryant\\source\\repos\\new folde\\TelecomProject.Data\\TelecomProject.Data\\TelecomProject.Data.csproj'. If you are using Visual Studio, this may be because the project is unloaded or not part of the current solution so run a restore from the command-line. Otherwise, the project file may be invalid or missing targets required for restore.",
+      "libraryId": "C:\\Users\\ryant\\source\\repos\\new folde\\TelecomProject.Data\\TelecomProject.Data\\TelecomProject.Data.csproj",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    }
+  ]
 }

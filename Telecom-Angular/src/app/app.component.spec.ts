@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'RJMobile'`, () => {
+  it(`should have as title 'Telecom-Angular'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('RJMobile');
+    expect(app.title).toEqual('Telecom-Angular');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('RJMobile app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('Telecom-Angular app is running!');
   });
 });
