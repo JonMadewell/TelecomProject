@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../Models/user.model';
 import { Plan } from '../Models/plan.model';
-import { device } from '../Models/device.model';
+import { Device} from '../Models/device.model';
 import { Person } from '../Models/person.model';
 import { Observable } from 'rxjs';
 
@@ -35,11 +35,11 @@ export class HttpClientService {
     return this.httpClient.get<Plan>("https://telecomprojectapijmrt.azurewebsites.net/api/Plans");
   }
 
-  getDevices(): Observable<device[]>{
-    return this.httpClient.get<device[]>("https://telecomprojectapijmrt.azurewebsites.net/api/Devices");
+  getDevices(): Observable<Device[]>{
+    return this.httpClient.get<Device[]>("https://telecomprojectapijmrt.azurewebsites.net/api/Devices");
   }
 
   getPhone(deviceId: number){
-    return this.httpClient.get<device>("https://telecomprojectapijmrt.azurewebsites.net/api/Devices");
+    return this.httpClient.get<Device>("https://telecomprojectapijmrt.azurewebsites.net/api/Devices");
   }
 }

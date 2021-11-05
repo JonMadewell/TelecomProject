@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { device } from 'src/app/Models/device.model';
+import { Device } from 'src/app/Models/device.model';
 import { HttpClientService } from 'src/app/Services/http-client.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { HttpClientService } from 'src/app/Services/http-client.service';
 })
 export class DevicesComponent implements OnInit {
 
-  devices: device[] = [];
+  devices: Device[] = [];
 
   constructor(private httpService: HttpClientService) { }
 
@@ -19,7 +19,7 @@ export class DevicesComponent implements OnInit {
     );
   }
 
-  handleSuccessfulResponse(response: device[]){
+  handleSuccessfulResponse(response: Device[]){
     this.devices= response;
   }
 

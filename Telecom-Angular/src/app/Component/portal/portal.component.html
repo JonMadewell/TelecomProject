@@ -42,19 +42,37 @@
                     <li class="list-group-item">Description:  {{plan.planName}}</li>
                       <li class="list-group-item">Device Limit:  {{plan.deviceLimit}}</li>
                       <li class="list-group-item">Unlimited:  {{plan.isUnlimited}}</li>
-                      <li class="list-group-item">Monthly Cost:  ${{plan.price}}</li>
+                      <li class="list-group-item">Monthly Cost:  ${{plan.price}}
+                          
+                        <ul>
+                            <li>Service Charge: ${{.25*plan.price}}</li>
+                            <li>Device Cost: ${{(.65*plan.price)/plan.deviceLimit}}/device</li>
+                            <li>Taxes: ${{.15*plan.price}}</li>
+                          </ul>
+                      </li>
                   </ul>
               </div>
       </div>
       <div class="card m-5">
         <h4 class="card-header">Devices</h4>
-            <div class="card-body bg-gradient-light">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Name:  {{person.FirstName}} {{person.LastName}}</li>
-                    <li class="list-group-item">Account Id:  {{person.account.accountId}}</li>
-                    <li class="list-group-item">Email:  {{person.Email}}</li>
-                </ul>
-            </div>
+        <div class="content">
+          <div fxLayout="row wrap" fxLayoutGap="4px grid">
+        <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let device of devices">
+          <mat-card class="mat-elevation-z4 border rounded-top border-primary">
+              <mat-card-header>
+                  <mat-card-title class="h3">Device: {{device.deviceName}}</mat-card-title>
+              </mat-card-header>
+               <img mat-card-image src="/assets/signUp.jpg" class="card-img-top" alt="plan1"/>
+              <mat-card-content>
+                  <p class="card-text">{{device.deviceId}}</p>
+              </mat-card-content>
+              <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Camera: {{device.camera}}</li>
+                  <li class="list-group-item">Storage: {{device.storage}}</li>
+                  <li class="list-group-item">Device Display: {{device.deviceDis}}</li>
+              </ul>
+              
+          </mat-card>
     </div>
     </div>
 </div>

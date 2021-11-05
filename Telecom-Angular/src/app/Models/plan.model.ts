@@ -1,4 +1,4 @@
-import { device } from "./device.model";
+import { Device } from "./device.model";
 
 export class Plan {
     planId: number= 0;
@@ -6,5 +6,5 @@ export class Plan {
     deviceLimit: number = 0;
     isUnlimited: boolean= false;
     price: number = 0;
-    devices: device []= [];
+    devices: Device []= [];
 }

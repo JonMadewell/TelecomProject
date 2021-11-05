@@ -1,7 +1,7 @@
-export class device {
+export class Device {
     deviceId: number= 0;
-    DeviceName: string = "";
-    Camera: string="";
-    Storage: string="";
-    DeviceDis: string="";
+    deviceName: string = "";
+    camera: string="";
+    storage: string="";
+    deviceDis: string="";
 }
