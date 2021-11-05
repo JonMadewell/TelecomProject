@@ -273,5 +273,24 @@ namespace TelecomProject.API.Controllers
 
             return phoneNumber;
         }
+        [HttpGet("GetPhoneNumbers")]
+        public async Task<ActionResult<List<string>>> ViewPhoneNumbers()
+        {
+            string userName = HttpContext.User.Identity.Name;
+
+            var person = await _context.People.Include(p => p.Login).Include(p => p.Devices).Include(p => p.Account).ThenInclude(a => a.plans).FirstOrDefaultAsync(p => p.Login.Username == userName);
+
+            var p_d = await _context.Set<PersonDevice>().Where(pd => pd.PersonId == person.PersonId).ToListAsync();
+
+
+            List<string> phoneNumbers = new List<string>();
+            
+            foreach(var number in p_d)
+            {
+                phoneNumbers.Add(number.PhoneNumber);
+            }
+
+            return phoneNumbers;
+        }
     }
 }
