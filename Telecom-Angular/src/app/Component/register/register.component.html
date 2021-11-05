@@ -9,7 +9,7 @@
                 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="d-block"> 
 
                    <mat-form-field>
-                        <input type="text" formControlName="FirstName" matInput placeholder="First Name"/>
+                        <input type="text" formControlName="FirstName" [formControl]="FirstName" matInput placeholder="First Name"/>
                         <mat-error *ngIf="FirstName.touched && FirstName.hasError('required')">First Name is required</mat-error>
                     </mat-form-field>
 
